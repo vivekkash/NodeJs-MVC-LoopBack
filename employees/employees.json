@@ -1,0 +1,561 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "sample",
+    "version": "0.0.1",
+    "description": "This is a just for exploring the concepts of loopback",
+    "contact": {
+      "name": "vivek",
+      "email": "vivekkashyap97@gmail.com"
+    }
+  },
+  "paths": {
+    "/employees/count": {
+      "get": {
+        "x-controller-name": "EmployeesController",
+        "x-operation-name": "count",
+        "tags": [
+          "EmployeesController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Employees model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Employees.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Employees>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "EmployeesController.count"
+      }
+    },
+    "/employees/{id}": {
+      "put": {
+        "x-controller-name": "EmployeesController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "EmployeesController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Employees PUT success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Employees"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "EmployeesController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "EmployeesController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "EmployeesController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Employees PATCH success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeesPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "EmployeesController.updateById"
+      },
+      "get": {
+        "x-controller-name": "EmployeesController",
+        "x-operation-name": "findById",
+        "tags": [
+          "EmployeesController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Employees model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeesWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Employees.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "EmployeesController.findById"
+      },
+      "delete": {
+        "x-controller-name": "EmployeesController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "EmployeesController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Employees DELETE success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "EmployeesController.deleteById"
+      }
+    },
+    "/employees": {
+      "post": {
+        "x-controller-name": "EmployeesController",
+        "x-operation-name": "create",
+        "tags": [
+          "EmployeesController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Employees model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Employees"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewEmployees"
+              }
+            }
+          }
+        },
+        "operationId": "EmployeesController.create"
+      },
+      "patch": {
+        "x-controller-name": "EmployeesController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "EmployeesController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Employees PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Employees.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Employees>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeesPartial"
+              }
+            }
+          }
+        },
+        "operationId": "EmployeesController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "EmployeesController",
+        "x-operation-name": "find",
+        "tags": [
+          "EmployeesController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Employees model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmployeesWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Employees.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "EmployeesController.find"
+      }
+    },
+    "/hello-world": {
+      "get": {
+        "x-controller-name": "HelloworldController",
+        "x-operation-name": "sayHello",
+        "tags": [
+          "HelloworldController"
+        ],
+        "responses": {
+          "200": {
+            "description": "This is the successful response from the method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "HelloworldController.sayHello"
+      }
+    },
+    "/ping": {
+      "get": {
+        "x-controller-name": "PingController",
+        "x-operation-name": "ping",
+        "tags": [
+          "PingController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ping Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PingResponse"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "PingController.ping"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "Employees": {
+        "title": "Employees",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "firstname": {
+            "type": "string"
+          },
+          "lastname": {
+            "type": "string"
+          },
+          "designation": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "firstname",
+          "lastname",
+          "designation"
+        ],
+        "additionalProperties": false
+      },
+      "NewEmployees": {
+        "title": "NewEmployees",
+        "type": "object",
+        "description": "(tsType: Omit<Employees, 'id'>, schemaOptions: { title: 'NewEmployees', exclude: [ 'id' ] })",
+        "properties": {
+          "firstname": {
+            "type": "string"
+          },
+          "lastname": {
+            "type": "string"
+          },
+          "designation": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "firstname",
+          "lastname",
+          "designation"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<Employees, 'id'>"
+      },
+      "EmployeesWithRelations": {
+        "title": "EmployeesWithRelations",
+        "type": "object",
+        "description": "(tsType: EmployeesWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "firstname": {
+            "type": "string"
+          },
+          "lastname": {
+            "type": "string"
+          },
+          "designation": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "firstname",
+          "lastname",
+          "designation"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "EmployeesWithRelations"
+      },
+      "EmployeesPartial": {
+        "title": "EmployeesPartial",
+        "type": "object",
+        "description": "(tsType: Partial<Employees>, schemaOptions: { partial: true })",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "firstname": {
+            "type": "string"
+          },
+          "lastname": {
+            "type": "string"
+          },
+          "designation": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<Employees>"
+      },
+      "loopback.Count": {
+        "type": "object",
+        "title": "loopback.Count",
+        "x-typescript-type": "@loopback/repository#Count",
+        "properties": {
+          "count": {
+            "type": "number"
+          }
+        }
+      },
+      "Employees.Fields": {
+        "title": "Employees.Fields",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "boolean"
+          },
+          "firstname": {
+            "type": "boolean"
+          },
+          "lastname": {
+            "type": "boolean"
+          },
+          "designation": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Employees.Filter": {
+        "type": "object",
+        "title": "Employees.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "fields": {
+            "$ref": "#/components/schemas/Employees.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Employees>"
+      },
+      "Employees.Filter1": {
+        "type": "object",
+        "title": "Employees.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "where": {
+            "title": "Employees.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "$ref": "#/components/schemas/Employees.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Employees>"
+      },
+      "PingResponse": {
+        "type": "object",
+        "title": "PingResponse",
+        "properties": {
+          "greeting": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "headers": {
+            "type": "object",
+            "properties": {
+              "Content-Type": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    }
+  }
+}
